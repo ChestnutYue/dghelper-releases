@@ -3,21 +3,21 @@
   "product": "DGHelper",
   "version": "3.3.1",
   "tag": "v3.3.1",
-  "published_at": "2026-11-03T20:26:09Z",
-  "notes": "- feat: 3.3.1 版本更新，恢复 Windows 单文件安装器并新增 Linux deb/rpm/Arch 安装包\n- chore: 删除多余的vtracer配置文件\n- chore: 更新 DGHelper 及 Updater 二进制程序文件\n- chore: 分发目录按平台拆分并适配构建发布链路\n- chore: 更新 BepInEx 至 Doorstop 4.4.0 并同步文件结构\n- docs: 删除安卓移植可行性相关的两份调研文档\n- feat(ci): 发布流水线拆分 prepare/windows/linux/publish，一次发版同产 Windows 与 Linux 包\n- refactor: 调整DGHelper配置参数并删除实验相关文件\n- chore(release): 清理已被 CI 取代的本地发布链路\n- fix: 修正 latest.json 读取 URL 的变量插值，避免 ? 被并入变量名导致 Invalid URI\n- fix: latest.json 写入增加重试，避免读取失败时漏传 sha\n- feat: 入库 Linux 版 ncnn(Vulkan)/libwebp 原生库与交叉编译脚本，同步 Linux 文档\n- feat: 自动更新器源码入库并升至 3.3.0，同步更新文档\n- fix: 白名单放行 VTracer 二进制，补齐 Windows 版并消除构建警告\n- fix: 生成发布说明时避免 git log 管道提前关闭导致步骤假失败\n- fix: 打包与混淆步骤改用异常判断，避免脚本调用后误读 LASTEXITCODE\n- feat: 支持 prefix 模式公共反代并更新 CDN 文档\n- feat: 加入游戏参考程序集以支持托管 runner 构建，并修复打包遗漏混淆产物\n- chore: 补全 CI 游戏程序集预检清单并忽略本地游戏 DLL 目录\n- feat: 新增 GitHub Actions 发布流水线与 CDN 反代方案",
+  "published_at": "2026-11-03T20:50:51Z",
+  "notes": "- fix: 修复 DGHelper.Updater 未混淆导致更新助手明文分发\n- feat: 3.3.1 版本更新，恢复 Windows 单文件安装器并新增 Linux deb/rpm/Arch 安装包\n- chore: 删除多余的vtracer配置文件\n- chore: 更新 DGHelper 及 Updater 二进制程序文件\n- chore: 分发目录按平台拆分并适配构建发布链路\n- chore: 更新 BepInEx 至 Doorstop 4.4.0 并同步文件结构\n- docs: 删除安卓移植可行性相关的两份调研文档\n- feat(ci): 发布流水线拆分 prepare/windows/linux/publish，一次发版同产 Windows 与 Linux 包\n- refactor: 调整DGHelper配置参数并删除实验相关文件\n- chore(release): 清理已被 CI 取代的本地发布链路\n- fix: 修正 latest.json 读取 URL 的变量插值，避免 ? 被并入变量名导致 Invalid URI\n- fix: latest.json 写入增加重试，避免读取失败时漏传 sha\n- feat: 入库 Linux 版 ncnn(Vulkan)/libwebp 原生库与交叉编译脚本，同步 Linux 文档\n- feat: 自动更新器源码入库并升至 3.3.0，同步更新文档\n- fix: 白名单放行 VTracer 二进制，补齐 Windows 版并消除构建警告\n- fix: 生成发布说明时避免 git log 管道提前关闭导致步骤假失败\n- fix: 打包与混淆步骤改用异常判断，避免脚本调用后误读 LASTEXITCODE\n- feat: 支持 prefix 模式公共反代并更新 CDN 文档\n- feat: 加入游戏参考程序集以支持托管 runner 构建，并修复打包遗漏混淆产物\n- chore: 补全 CI 游戏程序集预检清单并忽略本地游戏 DLL 目录",
   "release_page": "https://github.com/ChestnutYue/dghelper-releases/releases/tag/v3.3.1",
   "platforms": {
     "windows-x64": {
       "asset": "DGHelper_win-x64_3.3.1.zip",
-      "size": 252135144,
-      "sha256": "47284c0af418b87f8018d19f728bc7ad7000828940e6d98ac47b1d65acb30356",
+      "size": 252155380,
+      "sha256": "c9694395ed4eecdab97dfc70a2dad30a19c72f9f6aa0b1c1d0acf4b829b6a9f7",
       "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.1/DGHelper_win-x64_3.3.1.zip",
       "mirror": "https://gh-proxy.com/https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.1/DGHelper_win-x64_3.3.1.zip"
     },
     "linux-x64": {
       "asset": "DGHelper_linux-x64_3.3.1.tar.gz",
-      "size": 248253700,
-      "sha256": "fd9c15c8ac480a481f2eb72e8e3857237645ffe465e06c38d4920f616ae6b813",
+      "size": 248274023,
+      "sha256": "805c51d31e2514b1ea1663bef1b471f23a03952b5cc75d138465a83f29bd5bc9",
       "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.1/DGHelper_linux-x64_3.3.1.tar.gz",
       "mirror": "https://gh-proxy.com/https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.1/DGHelper_linux-x64_3.3.1.tar.gz"
     }
