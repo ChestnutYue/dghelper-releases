@@ -1,18 +1,18 @@
 {
   "schema_version": 1,
   "product": "DGHelper",
-  "version": "3.2.0",
-  "tag": "v3.2.0",
-  "published_at": "2026-11-03T17:35:57Z",
-  "notes": "- fix: 生成发布说明时避免 git log 管道提前关闭导致步骤假失败\n- fix: 打包与混淆步骤改用异常判断，避免脚本调用后误读 LASTEXITCODE\n- feat: 支持 prefix 模式公共反代并更新 CDN 文档\n- feat: 加入游戏参考程序集以支持托管 runner 构建，并修复打包遗漏混淆产物\n- chore: 补全 CI 游戏程序集预检清单并忽略本地游戏 DLL 目录\n- feat: 新增 GitHub Actions 发布流水线与 CDN 反代方案\n- chore: 忽略 keys-private 私钥目录，防止密钥再次入库\n- feat: 适配 Linux 平台授权、UI 和原生库加载\n- chore: 升级版本至 3.2.0，同步更新所有版本号与文档\n- fix: 降低形状最大顶点数和接缝外扩默认值\n- feat: 重构线稿彩绘配置为百分比滑杆与上限项，修复整数溢出\n- chore: 更新DGHelper二进制dll文件\n- refactor: 移除收藏簿全解锁相关功能及配置项\n- feat: 3.1.0 版本更新，新增实时调参角标与模式切换，重置默认配置与安装逻辑\n- feat: 3.1.0 新增 HUD 实时调参滑块与操作提示滚动\n- feat(ui): 为帮助面板添加滚动功能，解决内容溢出问题\n- feat: 新增彩绘参数实时调参功能\n- feat(ui): 添加圆角矩形样式与线稿阈值滑块布局优化\n- feat: 新增线稿二值阈值实时调参滑块功能\n- refactor: 拆分矢量化管线为线稿/彩绘独立模块，优化蒙版循环逻辑",
-  "release_page": "https://github.com/ChestnutYue/dghelper-releases/releases/tag/v3.2.0",
+  "version": "3.3.0",
+  "tag": "v3.3.0",
+  "published_at": "2026-11-03T18:31:16Z",
+  "notes": "- fix: 修正 latest.json 读取 URL 的变量插值，避免 ? 被并入变量名导致 Invalid URI\n- fix: latest.json 写入增加重试，避免读取失败时漏传 sha\n- feat: 入库 Linux 版 ncnn(Vulkan)/libwebp 原生库与交叉编译脚本，同步 Linux 文档\n- feat: 自动更新器源码入库并升至 3.3.0，同步更新文档\n- fix: 白名单放行 VTracer 二进制，补齐 Windows 版并消除构建警告\n- fix: 生成发布说明时避免 git log 管道提前关闭导致步骤假失败\n- fix: 打包与混淆步骤改用异常判断，避免脚本调用后误读 LASTEXITCODE\n- feat: 支持 prefix 模式公共反代并更新 CDN 文档\n- feat: 加入游戏参考程序集以支持托管 runner 构建，并修复打包遗漏混淆产物\n- chore: 补全 CI 游戏程序集预检清单并忽略本地游戏 DLL 目录\n- feat: 新增 GitHub Actions 发布流水线与 CDN 反代方案\n- chore: 忽略 keys-private 私钥目录，防止密钥再次入库\n- feat: 适配 Linux 平台授权、UI 和原生库加载\n- chore: 升级版本至 3.2.0，同步更新所有版本号与文档\n- fix: 降低形状最大顶点数和接缝外扩默认值\n- feat: 重构线稿彩绘配置为百分比滑杆与上限项，修复整数溢出\n- chore: 更新DGHelper二进制dll文件\n- refactor: 移除收藏簿全解锁相关功能及配置项\n- feat: 3.1.0 版本更新，新增实时调参角标与模式切换，重置默认配置与安装逻辑\n- feat: 3.1.0 新增 HUD 实时调参滑块与操作提示滚动",
+  "release_page": "https://github.com/ChestnutYue/dghelper-releases/releases/tag/v3.3.0",
   "platforms": {
     "windows-x64": {
-      "asset": "DGHelper_win-x64_3.2.0.zip",
-      "size": 252392932,
-      "sha256": "bee8af8d7ef81952cbbee4f34ff45dd9ecef0732252529634a2c93884a6cab0e",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.2.0/DGHelper_win-x64_3.2.0.zip",
-      "mirror": "https://gh-proxy.com/https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.2.0/DGHelper_win-x64_3.2.0.zip"
+      "asset": "DGHelper_win-x64_3.3.0.zip",
+      "size": 253458886,
+      "sha256": "e25706fb71dcb24d2992bf85c9d4b01098adde5d6925785f3521152e0aa20f16",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.0/DGHelper_win-x64_3.3.0.zip",
+      "mirror": "https://gh-proxy.com/https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.0/DGHelper_win-x64_3.3.0.zip"
     }
   }
 }
