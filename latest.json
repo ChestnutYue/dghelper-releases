@@ -1,20 +1,20 @@
 {
-  "version": "3.3.5",
-  "tag": "v3.3.5",
-  "published_at": "2026-11-04T17:04:39Z",
-  "notes": "## 新增\r\n\r\n- 更新下载支持多镜像：内置 gh-proxy.org、ghproxy.net 与 GitHub 直链，并按顺序自动切换；全部失败时静默降级，保留旧版本\r\n- 支持自定义 CDN 地址；每个镜像逐一校验文件大小与 SHA256，失败即弃用该源\r\n- 插件启动时自检更新助手哈希，与随包 `BepInEx\\config\\DGHelper\\updater-cache`（DLL + `.sha256`）比对，不一致则自动换位修补，重启后加载新版\r\n\r\n## 修复\r\n\r\n- 更新助手不再因 patcher 被游戏进程加载锁定而无法替换：对 `BepInEx\\patchers` 下的 DLL 改为「直接覆盖 → 同目录同卷改名换位 → 跳过」三级处置，改名换位后立即在原路径写入新文件并校验 SHA256，失败回滚，重启游戏后生效\r\n- 部分更新失败时不再误删 pending：任一文件未达到载荷状态即保留 `pending.ini` 与 payload，写 `partial.ini` 记录未完成项，保留进度并在下次启动续作\r\n- 修复 `published_at` 解析：清单时间字段不再被 JSON 解析器按日期推断吞掉，缺失、`null` 与非 ISO 字符串均不报错，解析失败退化为空值且不阻断更新检查\r\n\r\n## 优化\r\n\r\n- 清单移除 `mirror` 字段：镜像地址改为内置顺序 + 自定义地址，发布清单只描述资产本身\r\n- 每个文件的处置结果（覆盖 `overwrite` / 换位 `rebind` / 跳过 `skipped` / 已是载荷 `current`）写入 `apply.log`，便于排查更新失败的落点\r\n- 防降级判断改为仅在「已安装版本高于暂存版本」时放弃，版本相等时继续补齐缺失文件",
+  "version": "3.3.6",
+  "tag": "v3.3.6",
+  "published_at": "2026-11-04T18:19:56Z",
+  "notes": "## 新增\r\n\r\n- 临摹蒙版支持旋转：可按设定步长逆时针 / 顺时针转动，注入图元与作品回放同步变换\r\n- 临摹蒙版支持水平镜像与垂直镜像，可与旋转叠加使用\r\n- 蒙版旋转 / 镜像支持自定义热键：默认逆时针 `PageUp`、顺时针 `PageDown`、水平镜像 `Home`、垂直镜像 `End`，均可在设置中改键；旋转步长可配置\r\n- 复位键 `0` 一次性复位旋转角度与两个镜像开关\r\n\r\n## 修复\r\n\r\n- 修复彩绘注入图元后 `Delete` 键删除无响应：注入绕过游戏原生落笔，未开启清空 / 橡皮按钮，导致长按删除进度条始终禁用；注入完成后补开即可恢复\r\n- 修复从 3.3.4 直接升级时旧版更新助手无法被替换的问题：更新助手不再因 `BepInEx\\patchers\\DGHelper.Updater.dll` 被游戏进程加载锁定而无法写入，改为「直接覆盖 → 同目录同卷改名换位 → 跳过」三级处置，改名换位后立即在原路径写入新文件并校验 SHA256，失败回滚，重启游戏后生效\r\n- 修复更新链路「部分文件未写入却当作成功」：任一文件未达到载荷状态即保留 `pending.ini` 与载荷，写 `partial.ini` 记录未完成项，下次启动续作，不再误删进度\r\n- 修复 `published_at` 解析：清单时间字段不再被 JSON 解析器按日期推断吞掉，缺失、`null` 与非 ISO 字符串均不报错，解析失败退化为空值且不阻断更新检查\r\n\r\n## 优化\r\n\r\n- 蒙版显示、注入与回放共用同一变换（绕画布中心缩放 → 镜像 → 旋转 → 平移），调整蒙版后落笔位置与预览严格重合\r\n- 旋转 / 镜像为按下触发一次，避免长按连发导致高频写盘\r\n- 启动时按主键检测热键冲突，冲突只写警告日志、不修改用户配置\r\n- 更新下载支持内置多镜像（gh-proxy.org → ghproxy.net → GitHub 直链）与自定义 CDN 地址，逐个校验大小与 SHA256、失败自动切换；清单移除 `mirror` 字段\r\n- 每个更新文件的处置结果（覆盖 `overwrite` / 换位 `rebind` / 跳过 `skipped` / 已是载荷 `current`）写入 `apply.log`，便于排查失败落点",
   "platforms": {
     "windows-x64": {
-      "asset": "DGHelper_win-x64_3.3.5.zip",
-      "size": 252254225,
-      "sha256": "ac18e4827ec7228dad6825ff860419313b10dff02368695cbf52604743c20d92",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.5/DGHelper_win-x64_3.3.5.zip"
+      "asset": "DGHelper_win-x64_3.3.6.zip",
+      "size": 252261536,
+      "sha256": "ad893bfa6e75ef08406f0b1a499b3e0b2c3444b3744da1f7c1afe5c405901f8f",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.6/DGHelper_win-x64_3.3.6.zip"
     },
     "linux-x64": {
-      "asset": "DGHelper_linux-x64_3.3.5.tar.gz",
-      "size": 248371666,
-      "sha256": "b98075aff945aaefe3344fb0c15aaf8f902f13aef23397da337a18457650aa09",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.5/DGHelper_linux-x64_3.3.5.tar.gz"
+      "asset": "DGHelper_linux-x64_3.3.6.tar.gz",
+      "size": 248377349,
+      "sha256": "a7d183efe7444babdbae9d68352ce33bdda45560dcc5c7409c8cd2f4bbfb3631",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.6/DGHelper_linux-x64_3.3.6.tar.gz"
     }
   }
 }
