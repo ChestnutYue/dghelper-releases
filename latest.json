@@ -1,20 +1,21 @@
 {
-  "version": "3.3.6",
-  "tag": "v3.3.6",
-  "published_at": "2026-11-04T18:19:56Z",
-  "notes": "## 新增\r\n\r\n- 临摹蒙版支持旋转：可按设定步长逆时针 / 顺时针转动，注入图元与作品回放同步变换\r\n- 临摹蒙版支持水平镜像与垂直镜像，可与旋转叠加使用\r\n- 蒙版旋转 / 镜像支持自定义热键：默认逆时针 `PageUp`、顺时针 `PageDown`、水平镜像 `Home`、垂直镜像 `End`，均可在设置中改键；旋转步长可配置\r\n- 复位键 `0` 一次性复位旋转角度与两个镜像开关\r\n\r\n## 修复\r\n\r\n- 修复彩绘注入图元后 `Delete` 键删除无响应：注入绕过游戏原生落笔，未开启清空 / 橡皮按钮，导致长按删除进度条始终禁用；注入完成后补开即可恢复\r\n- 修复从 3.3.4 直接升级时旧版更新助手无法被替换的问题：更新助手不再因 `BepInEx\\patchers\\DGHelper.Updater.dll` 被游戏进程加载锁定而无法写入，改为「直接覆盖 → 同目录同卷改名换位 → 跳过」三级处置，改名换位后立即在原路径写入新文件并校验 SHA256，失败回滚，重启游戏后生效\r\n- 修复更新链路「部分文件未写入却当作成功」：任一文件未达到载荷状态即保留 `pending.ini` 与载荷，写 `partial.ini` 记录未完成项，下次启动续作，不再误删进度\r\n- 修复 `published_at` 解析：清单时间字段不再被 JSON 解析器按日期推断吞掉，缺失、`null` 与非 ISO 字符串均不报错，解析失败退化为空值且不阻断更新检查\r\n\r\n## 优化\r\n\r\n- 蒙版显示、注入与回放共用同一变换（绕画布中心缩放 → 镜像 → 旋转 → 平移），调整蒙版后落笔位置与预览严格重合\r\n- 旋转 / 镜像为按下触发一次，避免长按连发导致高频写盘\r\n- 启动时按主键检测热键冲突，冲突只写警告日志、不修改用户配置\r\n- 更新下载支持内置多镜像（gh-proxy.org → ghproxy.net → GitHub 直链）与自定义 CDN 地址，逐个校验大小与 SHA256、失败自动切换；清单移除 `mirror` 字段\r\n- 每个更新文件的处置结果（覆盖 `overwrite` / 换位 `rebind` / 跳过 `skipped` / 已是载荷 `current`）写入 `apply.log`，便于排查失败落点",
+  "version": "3.3.7",
+  "channel": "stable",
+  "tag": "v3.3.7",
+  "published_at": "2026-11-04T21:56:51Z",
+  "notes": "## 新增\r\n\r\n- 更新下载支持实时速度显示：按最近 1 秒滑动平均计算，界面显示 `KB/s` / `MB/s`（保留 1~2 位小数），速度归零时显示 `0 KB/s`，不会出现 NaN 或负值\r\n- 更新下载支持暂停 / 继续：暂停会释放连接并保留已下载的部分文件，继续时用 HTTP `Range` 断点续传；服务器不支持续传（忽略 `Range`）时自动整包重下并在进度文案中提示。暂停期间界面显示「已暂停」、已下载量与 0 速度，取消按钮仍然可用\r\n- 新增「更新后清除配置文件」开关（默认开启）：更新助手完整应用成功后的下次启动会删除旧配置，所有设置（绘制、播放、取词、更新等）回到默认值；删除前会把旧文件备份到 `BepInEx\\config\\DGHelper\\backup`。升级失败或仅部分应用时不会删除，关闭该开关则更新后保留全部设置\r\n- 彩绘补齐 VTracer 全部可用参数：曲线简化容差、最大颜色数、输出优化、固定调色板 / 调色板文件、自适应阈值 / 窗口 / 灵敏度、分水岭聚类层级；「颜色模式」新增「分水岭」选项\r\n- 线稿新增 18 项独立的 VTracer 参数（预设、颜色模式、层级模式、拟合模式、斑点过滤、颜色精度、图层色差、黑白阈值、路径小数位、简化容差、最大颜色数、输出优化、调色板、自适应阈值、分水岭层级等），与彩绘同名参数完全隔离；默认值逐项对齐原固定行为，默认输出不变\r\n- 恢复「更新通道」配置项，支持稳定版 / 预览版：预览版优先读取预览清单，没有预览清单时自动回落稳定版清单，并额外接收 beta / rc 等预发布版本\r\n\r\n## 优化\r\n\r\n- 配置文件更名为 `dghelper.cfg`（位置不变，仍为 `BepInEx\\config\\DGHelper\\dghelper.cfg`），安装器、安装脚本与文档同步更新\r\n- 发布流程支持稳定版 / 预览版双清单：正式版创建正式 Release 并更新 `latest.json`，预览版创建 prerelease 并只更新 `preview.json`，两者互不覆盖\r\n- 彩绘预设移除「黑白线稿」，保留自定义 / 海报色块 / 照片多色；黑白线稿预设仅供线稿模式使用\r\n- 清理更新链路中无引用的清单时间字段与相关残留代码，行为与升级兼容逻辑保持不变\r\n- 临摹蒙版旋转步长固定为 90°，移除原「旋转步长」配置项（设置面板不再显示该项）\r\n\r\n## 修复\r\n\r\n- 修复暂停 / 取消下载后可能残留半成品文件或线程状态不收敛的问题：所有终态（完成 / 失败 / 取消 / 暂停）都在关闭网络与文件句柄后写入\r\n- 更新版本比较改用展示版本号，修复预览版安装后因内部版本号不含后缀而无法被同号正式版覆盖的问题",
   "platforms": {
     "windows-x64": {
-      "asset": "DGHelper_win-x64_3.3.6.zip",
-      "size": 252261536,
-      "sha256": "ad893bfa6e75ef08406f0b1a499b3e0b2c3444b3744da1f7c1afe5c405901f8f",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.6/DGHelper_win-x64_3.3.6.zip"
+      "asset": "DGHelper_win-x64_3.3.7.zip",
+      "size": 252264951,
+      "sha256": "bfb688f3be46e0b691fcdaa2d3a0abd21908724fe1f5b290df0b1f429a364994",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.7/DGHelper_win-x64_3.3.7.zip"
     },
     "linux-x64": {
-      "asset": "DGHelper_linux-x64_3.3.6.tar.gz",
-      "size": 248377349,
-      "sha256": "a7d183efe7444babdbae9d68352ce33bdda45560dcc5c7409c8cd2f4bbfb3631",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.6/DGHelper_linux-x64_3.3.6.tar.gz"
+      "asset": "DGHelper_linux-x64_3.3.7.tar.gz",
+      "size": 248381830,
+      "sha256": "bb4a94f66dd69065c6038e65d6d22890a97e1c21f13ba3b1b5b31ba9d72274d5",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.7/DGHelper_linux-x64_3.3.7.tar.gz"
     }
   }
 }
