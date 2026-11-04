@@ -1,25 +1,20 @@
 {
-  "schema_version": 1,
-  "product": "DGHelper",
-  "version": "3.3.4",
-  "tag": "v3.3.4",
-  "published_at": "2026-11-04T14:41:53Z",
-  "notes": "## 新增\r\n\r\n- 求差并行开关与线程数配置（彩绘 / 线稿各一套，默认开启，线程数 0 表示按处理器自动夹取）\r\n- 层面积阈值配置（彩绘 / 线稿各一套，默认 0 关闭；开启后可按面积丢弃过小的层，用于压缩层数）\r\n- 构建过程新增分段诊断计时：包围盒、画布映射、逐环归一化规模、图元预算合并、计划装配、Clipper 外扩累计、色组 / 分组抽稀 / 预排序，以及 SVG 解析与绘制顺序的子项耗时\r\n\r\n## 修复\r\n\r\n- 修正构建日志的耗时口径：首行「矢量化合计」明确包含 VTracer 子进程耗时，避免把外部进程时间误认为纯图元构建时间\r\n- 修正「图元规模」日志中图元合并数量的说明文字\r\n\r\n## 优化\r\n\r\n- SVG 解析重写为单遍字符扫描 + `d` 命令状态机：去掉正则、`Split` 与子串分配，颜色、`transform`、数值改为按区间解析，数值解析不再产生临时对象。同机同规模样本（约 18.5 万条路径 / 128 万点）解析耗时由约 1091 ms 降到约 300 ms，托管内存分配由约 587 MB 降到约 62 MB，GC 次数下降一个数量级；输出路径数、环数、顶点数、包围盒与顶点指纹与旧实现逐位一致\r\n- 绘制顺序优化改为空间网格最近邻 + 2-opt，并按「百万对」计算量预算自动收敛轮数，实测该段耗时由约 5866 ms 降到约 353 ms\r\n- 求差改为按层并行，并用空间网格预筛候选遮挡层，实测该段耗时由约 6773 ms 降到约 4451 ms",
-  "release_page": "https://github.com/ChestnutYue/dghelper-releases/releases/tag/v3.3.4",
+  "version": "3.3.5",
+  "tag": "v3.3.5",
+  "published_at": "2026-11-04T17:04:39Z",
+  "notes": "## 新增\r\n\r\n- 更新下载支持多镜像：内置 gh-proxy.org、ghproxy.net 与 GitHub 直链，并按顺序自动切换；全部失败时静默降级，保留旧版本\r\n- 支持自定义 CDN 地址；每个镜像逐一校验文件大小与 SHA256，失败即弃用该源\r\n- 插件启动时自检更新助手哈希，与随包 `BepInEx\\config\\DGHelper\\updater-cache`（DLL + `.sha256`）比对，不一致则自动换位修补，重启后加载新版\r\n\r\n## 修复\r\n\r\n- 更新助手不再因 patcher 被游戏进程加载锁定而无法替换：对 `BepInEx\\patchers` 下的 DLL 改为「直接覆盖 → 同目录同卷改名换位 → 跳过」三级处置，改名换位后立即在原路径写入新文件并校验 SHA256，失败回滚，重启游戏后生效\r\n- 部分更新失败时不再误删 pending：任一文件未达到载荷状态即保留 `pending.ini` 与 payload，写 `partial.ini` 记录未完成项，保留进度并在下次启动续作\r\n- 修复 `published_at` 解析：清单时间字段不再被 JSON 解析器按日期推断吞掉，缺失、`null` 与非 ISO 字符串均不报错，解析失败退化为空值且不阻断更新检查\r\n\r\n## 优化\r\n\r\n- 清单移除 `mirror` 字段：镜像地址改为内置顺序 + 自定义地址，发布清单只描述资产本身\r\n- 每个文件的处置结果（覆盖 `overwrite` / 换位 `rebind` / 跳过 `skipped` / 已是载荷 `current`）写入 `apply.log`，便于排查更新失败的落点\r\n- 防降级判断改为仅在「已安装版本高于暂存版本」时放弃，版本相等时继续补齐缺失文件",
   "platforms": {
     "windows-x64": {
-      "asset": "DGHelper_win-x64_3.3.4.zip",
-      "size": 252206498,
-      "sha256": "a275fbe83570dbddafc1f8829c5675f9c44b0a1fbb96ce3815d8167ba6685495",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.4/DGHelper_win-x64_3.3.4.zip",
-      "mirror": "https://gh-proxy.com/https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.4/DGHelper_win-x64_3.3.4.zip"
+      "asset": "DGHelper_win-x64_3.3.5.zip",
+      "size": 252254225,
+      "sha256": "ac18e4827ec7228dad6825ff860419313b10dff02368695cbf52604743c20d92",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.5/DGHelper_win-x64_3.3.5.zip"
     },
     "linux-x64": {
-      "asset": "DGHelper_linux-x64_3.3.4.tar.gz",
-      "size": 248331478,
-      "sha256": "586cc8395287ab7f077c880d0a1332c508cb3aa210eae170a79f852baff7e040",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.4/DGHelper_linux-x64_3.3.4.tar.gz",
-      "mirror": "https://gh-proxy.com/https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.4/DGHelper_linux-x64_3.3.4.tar.gz"
+      "asset": "DGHelper_linux-x64_3.3.5.tar.gz",
+      "size": 248371666,
+      "sha256": "b98075aff945aaefe3344fb0c15aaf8f902f13aef23397da337a18457650aa09",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.5/DGHelper_linux-x64_3.3.5.tar.gz"
     }
   }
 }
