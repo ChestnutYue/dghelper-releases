@@ -1,21 +1,21 @@
 {
-  "version": "4.0.0",
+  "version": "4.0.1",
   "channel": "stable",
-  "tag": "v4.0.0",
-  "published_at": "2026-11-06T09:26:29Z",
-  "notes": "## 变更\r\n\r\n- 几何运算底层整体替换为随插件分发的自建原生库（Windows / Linux 双平台）：插件不再依赖 Clipper2 与 Triangle.NET，安装包内这两个库的文件也已移除，升级覆盖即可使用，无需额外安装任何组件\r\n\r\n## 优化\r\n\r\n- 线稿结果更稳定：同一张图片每次生成的形状数量与画面细节保持一致，不再出现形状数每次略有不同、细节随之轻微抖动的现象\r\n- 照片类图片的准备阶段（矢量化与绘图图元构建）速度提升约 1.7~1.85 倍\r\n- 绘制计划的构建速度进一步提升：大图反复调参时每次重建的等待更短，改完参数能更快看到效果\r\n- 彩绘调参的重建日志与线稿保持一致：每次重建完成会显示本次耗时、以及是否重新执行了矢量化，方便判断参数调整是否真的生效\r\n\r\n## 修复\r\n\r\n- 修复线稿在多边形模式下丢失大面积墨迹的问题：此前含大量孔洞的墨迹区域可能只画出很小一部分，表现为线条残缺或缺块，现在可以完整绘制",
+  "tag": "v4.0.1",
+  "published_at": "2026-11-06T11:15:36Z",
+  "notes": "## 变更\r\n\r\n- 彩绘的分层求差恢复为逐层累积并集方案（移除此前的可见面裁剪实现），画面与原方案逐像素一致\r\n\r\n## 优化\r\n\r\n- 精简内部实现：移除已不再使用的旧代码路径，以及「最大形状数」下方的一行用量说明，界面更简洁\r\n\r\n## 修复\r\n\r\n- 修复低预算下「最大形状数」调低时整体画面与原图差距过大的问题：裁剪溢出的小块优先并入同色或近色的相邻块，颜色差异过大时直接丢弃，同时保留形状内部的孔洞，避免大面积错色、填平孔洞或整块缺失",
   "platforms": {
     "windows-x64": {
-      "asset": "DGHelper_win-x64_4.0.0.zip",
-      "size": 252508276,
-      "sha256": "fa0a376dd8a0ba9353992f623c9b98a713823e588646a995886f7c389343bf94",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.0/DGHelper_win-x64_4.0.0.zip"
+      "asset": "DGHelper_win-x64_4.0.1.zip",
+      "size": 252511902,
+      "sha256": "d59361d36523c4ec929e24d223bc30ceef2ad9dc1268468cb4b130e5069980ee",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.1/DGHelper_win-x64_4.0.1.zip"
     },
     "linux-x64": {
-      "asset": "DGHelper_linux-x64_4.0.0.tar.gz",
-      "size": 249002502,
-      "sha256": "3994082bbf7aaff5a138525154e1ea924893b43ba20fde916fa5f545d4e1cf70",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.0/DGHelper_linux-x64_4.0.0.tar.gz"
+      "asset": "DGHelper_linux-x64_4.0.1.tar.gz",
+      "size": 249006726,
+      "sha256": "d742329e09e0f06ec5242f0c02dcaa805b9aea31af72b72239c6d0c43b6b41ea",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.1/DGHelper_linux-x64_4.0.1.tar.gz"
     }
   }
 }
