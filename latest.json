@@ -1,21 +1,21 @@
 {
-  "version": "3.3.7",
+  "version": "4.0.0",
   "channel": "stable",
-  "tag": "v3.3.7",
-  "published_at": "2026-11-04T21:56:51Z",
-  "notes": "## 新增\r\n\r\n- 更新下载支持实时速度显示：按最近 1 秒滑动平均计算，界面显示 `KB/s` / `MB/s`（保留 1~2 位小数），速度归零时显示 `0 KB/s`，不会出现 NaN 或负值\r\n- 更新下载支持暂停 / 继续：暂停会释放连接并保留已下载的部分文件，继续时用 HTTP `Range` 断点续传；服务器不支持续传（忽略 `Range`）时自动整包重下并在进度文案中提示。暂停期间界面显示「已暂停」、已下载量与 0 速度，取消按钮仍然可用\r\n- 新增「更新后清除配置文件」开关（默认开启）：更新助手完整应用成功后的下次启动会删除旧配置，所有设置（绘制、播放、取词、更新等）回到默认值；删除前会把旧文件备份到 `BepInEx\\config\\DGHelper\\backup`。升级失败或仅部分应用时不会删除，关闭该开关则更新后保留全部设置\r\n- 彩绘补齐 VTracer 全部可用参数：曲线简化容差、最大颜色数、输出优化、固定调色板 / 调色板文件、自适应阈值 / 窗口 / 灵敏度、分水岭聚类层级；「颜色模式」新增「分水岭」选项\r\n- 线稿新增 18 项独立的 VTracer 参数（预设、颜色模式、层级模式、拟合模式、斑点过滤、颜色精度、图层色差、黑白阈值、路径小数位、简化容差、最大颜色数、输出优化、调色板、自适应阈值、分水岭层级等），与彩绘同名参数完全隔离；默认值逐项对齐原固定行为，默认输出不变\r\n- 恢复「更新通道」配置项，支持稳定版 / 预览版：预览版优先读取预览清单，没有预览清单时自动回落稳定版清单，并额外接收 beta / rc 等预发布版本\r\n\r\n## 优化\r\n\r\n- 配置文件更名为 `dghelper.cfg`（位置不变，仍为 `BepInEx\\config\\DGHelper\\dghelper.cfg`），安装器、安装脚本与文档同步更新\r\n- 发布流程支持稳定版 / 预览版双清单：正式版创建正式 Release 并更新 `latest.json`，预览版创建 prerelease 并只更新 `preview.json`，两者互不覆盖\r\n- 彩绘预设移除「黑白线稿」，保留自定义 / 海报色块 / 照片多色；黑白线稿预设仅供线稿模式使用\r\n- 清理更新链路中无引用的清单时间字段与相关残留代码，行为与升级兼容逻辑保持不变\r\n- 临摹蒙版旋转步长固定为 90°，移除原「旋转步长」配置项（设置面板不再显示该项）\r\n\r\n## 修复\r\n\r\n- 修复暂停 / 取消下载后可能残留半成品文件或线程状态不收敛的问题：所有终态（完成 / 失败 / 取消 / 暂停）都在关闭网络与文件句柄后写入\r\n- 更新版本比较改用展示版本号，修复预览版安装后因内部版本号不含后缀而无法被同号正式版覆盖的问题",
+  "tag": "v4.0.0",
+  "published_at": "2026-11-06T09:26:29Z",
+  "notes": "## 变更\r\n\r\n- 几何运算底层整体替换为随插件分发的自建原生库（Windows / Linux 双平台）：插件不再依赖 Clipper2 与 Triangle.NET，安装包内这两个库的文件也已移除，升级覆盖即可使用，无需额外安装任何组件\r\n\r\n## 优化\r\n\r\n- 线稿结果更稳定：同一张图片每次生成的形状数量与画面细节保持一致，不再出现形状数每次略有不同、细节随之轻微抖动的现象\r\n- 照片类图片的准备阶段（矢量化与绘图图元构建）速度提升约 1.7~1.85 倍\r\n- 绘制计划的构建速度进一步提升：大图反复调参时每次重建的等待更短，改完参数能更快看到效果\r\n- 彩绘调参的重建日志与线稿保持一致：每次重建完成会显示本次耗时、以及是否重新执行了矢量化，方便判断参数调整是否真的生效\r\n\r\n## 修复\r\n\r\n- 修复线稿在多边形模式下丢失大面积墨迹的问题：此前含大量孔洞的墨迹区域可能只画出很小一部分，表现为线条残缺或缺块，现在可以完整绘制",
   "platforms": {
     "windows-x64": {
-      "asset": "DGHelper_win-x64_3.3.7.zip",
-      "size": 252264951,
-      "sha256": "bfb688f3be46e0b691fcdaa2d3a0abd21908724fe1f5b290df0b1f429a364994",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.7/DGHelper_win-x64_3.3.7.zip"
+      "asset": "DGHelper_win-x64_4.0.0.zip",
+      "size": 252508276,
+      "sha256": "fa0a376dd8a0ba9353992f623c9b98a713823e588646a995886f7c389343bf94",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.0/DGHelper_win-x64_4.0.0.zip"
     },
     "linux-x64": {
-      "asset": "DGHelper_linux-x64_3.3.7.tar.gz",
-      "size": 248381830,
-      "sha256": "bb4a94f66dd69065c6038e65d6d22890a97e1c21f13ba3b1b5b31ba9d72274d5",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v3.3.7/DGHelper_linux-x64_3.3.7.tar.gz"
+      "asset": "DGHelper_linux-x64_4.0.0.tar.gz",
+      "size": 249002502,
+      "sha256": "3994082bbf7aaff5a138525154e1ea924893b43ba20fde916fa5f545d4e1cf70",
+      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.0/DGHelper_linux-x64_4.0.0.tar.gz"
     }
   }
 }
