@@ -1,21 +1,15 @@
 {
-  "version": "4.0.1",
-  "channel": "stable",
-  "tag": "v4.0.1",
-  "published_at": "2026-11-06T11:15:36Z",
-  "notes": "## 变更\r\n\r\n- 彩绘的分层求差恢复为逐层累积并集方案（移除此前的可见面裁剪实现），画面与原方案逐像素一致\r\n\r\n## 优化\r\n\r\n- 精简内部实现：移除已不再使用的旧代码路径，以及「最大形状数」下方的一行用量说明，界面更简洁\r\n\r\n## 修复\r\n\r\n- 修复低预算下「最大形状数」调低时整体画面与原图差距过大的问题：裁剪溢出的小块优先并入同色或近色的相邻块，颜色差异过大时直接丢弃，同时保留形状内部的孔洞，避免大面积错色、填平孔洞或整块缺失",
-  "platforms": {
-    "windows-x64": {
-      "asset": "DGHelper_win-x64_4.0.1.zip",
-      "size": 252511902,
-      "sha256": "d59361d36523c4ec929e24d223bc30ceef2ad9dc1268468cb4b130e5069980ee",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.1/DGHelper_win-x64_4.0.1.zip"
-    },
-    "linux-x64": {
-      "asset": "DGHelper_linux-x64_4.0.1.tar.gz",
-      "size": 249006726,
-      "sha256": "d742329e09e0f06ec5242f0c02dcaa805b9aea31af72b72239c6d0c43b6b41ea",
-      "url": "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.0.1/DGHelper_linux-x64_4.0.1.tar.gz"
+  "version":  "4.1.0",
+  "channel":  "stable",
+  "tag":  "v4.1.0",
+  "published_at":  "2026-11-07T12:37:21Z",
+  "notes":  "## DGHelper 4.1.0\n\n### 主要变更\n\n- 新增作品簿录制支持，发布口径收敛为 Windows-only（`6e8b13b`、`5aa36d0`）\n- 新增跨平台 Steam 游戏目录自动探测逻辑（`a23fda2`）\n- 移除 Linux 支持及相关打包/卸载脚本，清理废弃的 vtracer FFI 测试项目（`5aa36d0`、`68dee8c`）\n- 删除过时的研究文档与设置面板设计预览页面（`c88c0f3`、`44ad6ac`）\n\n### 产物\n\n- `DGHelper_win-x64_4.1.0.zip`：BepInEx 插件包（含自愈缓存）\n- `DGHelper_Setup_win-x64_4.1.0.exe`：单文件安装器\n- 两个 `.sha256` 校验文件\n\n### 说明\n\n- 以 tag `v4.1.0` 构建，目标平台 Windows x64。\n- 完整差异见 `v4.0.1...v4.1.0`。",
+  "platforms":  {
+    "windows-x64":  {
+      "asset":  "DGHelper_win-x64_4.1.0.zip",
+      "size":  252413013,
+      "sha256":  "b18540af46d9b9deac189f04fb7d58bbead87d75bff35821749745366f28283e",
+      "url":  "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.1.0/DGHelper_win-x64_4.1.0.zip"
     }
   }
 }
