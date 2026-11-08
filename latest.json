@@ -2,13 +2,13 @@
   "version":  "4.1.2",
   "channel":  "stable",
   "tag":  "v4.1.2",
-  "published_at":  "2026-11-08T14:46:48Z",
+  "published_at":  "2026-11-08T15:03:33Z",
   "notes":  "## 修复\n\n- 修复临摹蒙版旋转后注入画布图像变形：旋转原先直接在归一化坐标空间应用矩阵，而归一化 x、y 的单位分别是画布宽与高，画布非正方形时该操作等价于剪切而非旋转（90° 时水平放大、垂直压扁约 16:9）。现改为先换算到以画布高度为单位的等比空间旋转，再换算回归一化空间；旋转角为 0 时走恒等分支，未旋转路径的坐标与修复前逐位一致。彩绘、线稿与作品回放共用同一套变换，预览位图与注入几何保持重合\n\n## 变更\n\n- HUD 候选图 / 作品网格的滚动条与设置面板统一：共用 6px 深色轨道 + 圆角滑块皮肤，普通 / 悬停 / 拖拽外观一致，内容不足一屏时自动隐藏；滚轮与拖拽交互不变\n\n## 文档\n\n- 新增《彩绘绘制与网络同步机制》（`doc/彩绘绘制与网络同步机制.md`），并在 `doc/README.md` 补充索引",
   "platforms":  {
     "windows-x64":  {
       "asset":  "DGHelper_win-x64_4.1.2.zip",
-      "size":  252408318,
-      "sha256":  "89a2bf3d8cfd0db4004fee859a69ba808fd91af9b8d1b61ea6f0670499b46dd0",
+      "size":  252436936,
+      "sha256":  "b028bcbb10c53c9b04f80f9f0fd98b6688a69c11c42dce7cddb2ef631a4156f4",
       "url":  "https://github.com/ChestnutYue/dghelper-releases/releases/download/v4.1.2/DGHelper_win-x64_4.1.2.zip"
     }
   }
